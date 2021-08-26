@@ -5,15 +5,17 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import postRouts from './routes/posts.js';
+import userRouts from './routes/users.js';
 
 const app = express();
 dotenv.config();
 
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use('/posts', postRouts);
+app.use('/users', userRouts);
 
 app.get('/', (req, res) => {
     res.send('Hello to my app')
